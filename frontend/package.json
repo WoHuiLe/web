@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "swagger": "^0.7.5",
     "vue": "^2.6.14"
   },
   "devDependencies": {

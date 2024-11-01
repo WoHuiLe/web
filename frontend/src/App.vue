@@ -20,7 +20,7 @@ export default {
     async startTest() {
       if (this.isTesting) return; // 如果已经在测试中，直接返回
       this.isTesting = true; // 设置为正在测试
-      console.log('开始测试')
+      console.log('开始测试le')
       try {
         await Swal.fire({
           title: '成功啦！',
@@ -34,13 +34,13 @@ export default {
       }
     },
     async getData() {
-      console.log('getData')
-      axios.get("http://0.0.0.0:5000/Data/data").then(response => {
-        console.log(response.data);
-      }).catch(error => {
-        console.error('请求失败:', error);
-      });
-    
+      console.log('get_Data')
+      try {
+      const response = await axios.get("http://10.10.6.27:6111/Data/data");
+      console.log(response.data);
+    } catch (error) {
+      console.error('请求失败:', error);
+    }
     }
   }
 }

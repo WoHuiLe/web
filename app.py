@@ -21,6 +21,7 @@ import datetime
 import json
 from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi import FastAPI, WebSocket
+from fastapi.middleware.cors import CORSMiddleware  # 导入 CORS 中间件
 
 from routes.get_data import GetDataRouter
 from start_flask import app
@@ -43,10 +44,8 @@ class FastIO:
 
 if __name__ == "__main__":
     import threading
-    # FastIO()
     threading.Thread(target=FastIO).start()
     threading.Thread(target=app.run, args=("0.0.0.0", 1111)).start()
    
     
-    # app.run(host="0.0.0.0", port=1111, debug=True)
-   
+
