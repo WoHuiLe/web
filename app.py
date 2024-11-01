@@ -23,6 +23,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi import FastAPI, WebSocket
 
 from routes.get_data import GetDataRouter
+from start_flask import app
+import uvicorn
 
 
 class FastIO:
@@ -32,7 +34,7 @@ class FastIO:
             CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
         )
         self.include_router()
-        uvicorn.run(self.app, host="0.0.0.0", port=5000, access_log=False)
+        uvicorn.run(self.app, host="0.0.0.0", port=6111, access_log=False)
 
     def include_router(self):
         get_data_router = GetDataRouter()
@@ -40,4 +42,11 @@ class FastIO:
 
 
 if __name__ == "__main__":
-    fastio = FastIO()
+    import threading
+    # FastIO()
+    threading.Thread(target=FastIO).start()
+    threading.Thread(target=app.run, args=("0.0.0.0", 1111)).start()
+   
+    
+    # app.run(host="0.0.0.0", port=1111, debug=True)
+   
