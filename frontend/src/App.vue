@@ -1,4 +1,5 @@
 <template>
+  
   <div id="app">
     <el-button color="#626aef" @click="startTest" :disabled="isTesting">开始测试</el-button>
     <el-button color="#626aef" @click="getData">获取数据</el-button>
@@ -36,7 +37,10 @@ export default {
     async getData() {
       console.log('get_Data')
       try {
-      const response = await axios.get("http://10.10.6.27:6111/Data/data");
+      // const id = "1234567892"
+      const data = {"name": "test"}
+      // const response = await axios.get(`http://127.0.0.1:9000/Data/data/${id}`);
+      const response = await axios.post("http://127.0.0.1:9000/Data/data",data);
       console.log(response.data);
     } catch (error) {
       console.error('请求失败:', error);

@@ -31,15 +31,20 @@ import uvicorn
 class FastIO:
     def __init__(self) -> None:
         self.app = FastAPI()
-        self.app.add_middleware(
-            CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"]
+    
+        self.app.add_middleware(  
+        CORSMiddleware,  
+        allow_origins=["*"],  
+        allow_credentials=True, 
+        allow_methods=["*"], 
+        allow_headers=["*"],  
         )
         self.include_router()
-        uvicorn.run(self.app, host="0.0.0.0", port=6111, access_log=False)
+        uvicorn.run(self.app, host="0.0.0.0", port=9000, access_log=False)
 
     def include_router(self):
         get_data_router = GetDataRouter()
-        self.app.include_router(get_data_router, tags="get_data")
+        self.app.include_router(get_data_router)
 
 
 if __name__ == "__main__":
